@@ -210,6 +210,7 @@ class _DrawerScaffoldState<T> extends State<DrawerScaffold>
     if (widget.appBar != null)
       return AppBar(
           actionsIconTheme: widget.appBar!.actionsIconTheme,
+          toolbarHeight: widget.appBar!.toolbarHeight,
           excludeHeaderSemantics: widget.appBar!.excludeHeaderSemantics,
           shape: widget.appBar!.shape,
           key: widget.appBar!.key,
