@@ -246,6 +246,7 @@ class _SideDrawerState extends State<SideDrawer> with TickerProviderStateMixin {
             menuView: widget,
             width: maxSlideAmount,
             icon: item.icon == null ? item.prefix : Icon(item.icon),
+            size: item.size == null ? 25 : item.size,
             suffix: item.suffix,
             onTap: onTap as dynamic Function()?,
             drawBorder: !widget.animation,
@@ -552,6 +553,7 @@ class _MenuListItem extends StatelessWidget {
   final Direction direction;
   final double? width;
   final EdgeInsets? padding;
+  final double? size;
 
   _MenuListItem({
     required this.title,
@@ -564,6 +566,7 @@ class _MenuListItem extends StatelessWidget {
     this.drawBorder,
     this.direction = Direction.right,
     this.width,
+    this.size,
     this.padding,
     this.suffix,
   });
@@ -578,7 +581,7 @@ class _MenuListItem extends StatelessWidget {
       children.add(Padding(
         padding: EdgeInsets.only(right: 12),
         child: IconTheme(
-            data: IconThemeData(color: _textStyle.color), child: icon!),
+            data: IconThemeData(color: _textStyle.color, size: size), child: icon!),
       ));
     children.add(
       Expanded(
@@ -653,6 +656,8 @@ class MenuItem<T> {
   /// append data with [MenuItem], then can be use on itemBuilder
   final dynamic data;
 
+  final double? size;
+
   MenuItem({
     this.id,
     required this.title,
@@ -660,6 +665,7 @@ class MenuItem<T> {
     this.prefix,
     this.suffix,
     this.textStyle,
+    this.size,
     this.data,
   }) : assert(prefix == null || icon == null);
 
@@ -669,6 +675,7 @@ class MenuItem<T> {
     IconData? icon,
     Widget? prefix,
     Widget? suffix,
+    double? size,
     TextStyle? textStyle,
     dynamic? data,
   }) {
@@ -678,6 +685,7 @@ class MenuItem<T> {
       icon: icon,
       prefix: prefix,
       suffix: suffix,
+      size: size ?? this.size,
       textStyle: textStyle ?? this.textStyle,
       data: data ?? this.data,
     );
